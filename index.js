@@ -92,6 +92,9 @@ const runAction = () => {
 	// Copy "github_token" input variable to "GH_TOKEN" env variable (required by `electron-builder`)
 	setEnv("GH_TOKEN", getInput("github_token", true));
 
+	// Fix error "error:0308010C:digital envelope routines::unsupported" 
+	setEnv("NODE_OPTIONS", "--openssl-legacy-provider");
+
 	// Require code signing certificate and password if building for macOS. Export them to environment
 	// variables (required by `electron-builder`)
 	if (platform === "mac") {
