@@ -128,6 +128,11 @@ const runAction = () => {
 		}
 	}
 
+	// Fix python path
+	if (platform === "mac") {
+		setEnv("PYTHON_PATH", "/usr/bin/python3")
+	}
+
 	log(`Building${release ? " and releasing" : ""} the Electron app…`);
 	const cmd = useVueCli ? "vue-cli-service electron:build" : "electron-builder";
 	for (let i = 0; i < maxAttempts; i += 1) {
